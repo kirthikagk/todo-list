@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add New Task</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Render each field with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="id_title" class="form-label">Title</label>
+            {% render_field form.title class="form-control" placeholder="Enter task title" %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_description" class="form-label">Description</label>
+            {% render_field form.description class="form-control" placeholder="Enter task description" %}
+        </div>
+
+        <div class="mb-3 form-check">
+            {% render_field form.status class="form-check-input" %}
+            <label class="form-check-label" for="id_status">Completed</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Task</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
